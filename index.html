@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>케이소프트 | AI 프로그램 개발</title>
+
+    <meta name="description"
+          content="케이소프트는 생성형 AI, LLM, RAG, AI Agent, 업무 자동화, 로컬 AI, 웹·앱 등 AI 기반 소프트웨어를 개발합니다.">
+
+    <!-- Pretendard -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+        rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script>
+        tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: [
+                                'Pretendard Variable',
+                                'Pretendard',
+                                '-apple-system',
+                                'BlinkMacSystemFont',
+                                'system-ui',
+                                'sans-serif'
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Pretendard Variable', 'Pretendard',
+                         -apple-system, BlinkMacSystemFont,
+                         system-ui, sans-serif;
+
+            background: #080808;
+            color: #f4f4f5;
+
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .keep-all {
+            word-break: keep-all;
+        }
+
+        /* 배경 노이즈 */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+
+            pointer-events: none;
+            z-index: 100;
+            opacity: .45;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #93c5fd 45%,
+                #3b82f6 75%,
+                #2563eb 100%
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
+            backdrop-filter: blur(18px);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(100px);
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulseBlue {
+            0%,100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .4;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .float {
+            animation: float 7s ease-in-out infinite;
+        }
+
+        .pulse-dot {
+            animation: pulseBlue 2s ease-in-out infinite;
+        }
+
+        .fade-up {
+            opacity: 0;
+            animation: fadeUp .9s cubic-bezier(.16,1,.3,1) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: .1s;
+        }
+
+        .delay-2 {
+            animation-delay: .2s;
+        }
+
+        .delay-3 {
+            animation-delay: .3s;
+        }
+
+        .delay-4 {
+            animation-delay: .4s;
+        }
+
+        .card {
+            transition:
+                transform .35s cubic-bezier(.16,1,.3,1),
+                border-color .35s ease,
+                background .35s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(59,130,246,.35);
+            background: rgba(59,130,246,.045);
+        }
+
+        .btn {
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(37,99,235,.35);
+        }
+
+        .tech-pill {
+            transition: .25s;
+        }
+
+        .tech-pill:hover {
+            border-color: rgba(96,165,250,.5);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+
+            transition:
+                opacity .7s cubic-bezier(.16,1,.3,1),
+                transform .7s cubic-bezier(.16,1,.3,1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.open {
+            display: flex;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
+
+    <nav
+        class="glass rounded-full px-4 py-2.5 flex items-center gap-2
+               shadow-2xl shadow-black/40">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2 mr-3">
+
+            <div
+                class="w-9 h-9 rounded-xl bg-blue-600
+                       flex items-center justify-center">
+
+                <iconify-icon
+                    icon="solar:programming-bold"
+                    style="font-size:18px;color:white;">
+                </iconify-icon>
+
+            </div>
+
+            <div class="leading-tight">
+                <div class="font-bold text-white text-sm">
+                    케이소프트
+                </div>
+
+                <div class="text-[9px] tracking-[.15em] text-zinc-500">
+                    KEISOFT
+                </div>
+            </div>
+
+        </a>
+
+
+        <!-- PC 메뉴 -->
+
+        <div class="hidden md:flex items-center gap-1">
+
+            <a href="#about"
+               class="px-3.5 py-2 text-sm text-zinc-400
+                      hover:text-white transition">
+                회사소개
+            </a>
+
+            <a href="#services"
+               class="px-3.5 py-2 text-sm text-zinc-400
+                      hover:text-white transition">
+                개발분야
+            </a>
+
+            <a href="#technology"
+               class="px-3.5 py-2 text-sm text-zinc-400
+                      hover:text-white transition">
+                AI 기술
+            </a>
+
+            <a href="#projects"
+               class="px-3.5 py-2 text-sm text-zinc-400
+                      hover:text-white transition">
+                개발사례
+            </a>
+
+        </div>
+
+
+        <!-- Contact -->
+
+        <a href="#contact"
+           class="ml-2 px-5 py-2 bg-blue-600 rounded-full
+                  text-sm font-semibold text-white btn">
+
+            개발 문의
+
+        </a>
+
+
+        <!-- 모바일 버튼 -->
+
+        <button
+            onclick="toggleMenu()"
+            class="md:hidden ml-1 w-8 h-8
+                   flex items-center justify-center">
+
+            <iconify-icon
+                icon="solar:hamburger-menu-linear"
+                style="font-size:20px;">
+            </iconify-icon>
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+
+<!-- 모바일 메뉴 -->
+
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-[60]
+           bg-black/95 backdrop-blur-xl
+           flex-col items-center justify-center gap-8">
+
+    <button
+        onclick="toggleMenu()"
+        class="absolute top-6 right-6
+               w-11 h-11 rounded-full glass
+               flex items-center justify-center">
+
+        <iconify-icon
+            icon="solar:close-linear"
+            style="font-size:24px;">
+        </iconify-icon>
+
+    </button>
+
+    <a onclick="toggleMenu()"
+       href="#about"
+       class="text-2xl text-zinc-300">
+        회사소개
+    </a>
+
+    <a onclick="toggleMenu()"
+       href="#services"
+       class="text-2xl text-zinc-300">
+        개발분야
+    </a>
+
+    <a onclick="toggleMenu()"
+       href="#technology"
+       class="text-2xl text-zinc-300">
+        AI 기술
+    </a>
+
+    <a onclick="toggleMenu()"
+       href="#projects"
+       class="text-2xl text-zinc-300">
+        개발사례
+    </a>
+
+    <a onclick="toggleMenu()"
+       href="#contact"
+       class="px-8 py-4 bg-blue-600
+              rounded-full font-semibold">
+
+        개발 문의하기
+
+    </a>
+
+</div>
+
+
+
+<main>
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<section
+    class="relative min-h-screen
+           flex items-center overflow-hidden">
+
+    <div
+        class="orb float"
+        style="
+        width:600px;
+        height:600px;
+        background:rgba(37,99,235,.16);
+        top:-100px;
+        right:-150px;">
+    </div>
+
+    <div
+        class="orb"
+        style="
+        width:400px;
+        height:400px;
+        background:rgba(29,78,216,.10);
+        bottom:0;
+        left:-150px;">
+    </div>
+
+
+    <div
+        class="max-w-7xl mx-auto
+               px-6 lg:px-8
+               pt-36 pb-24 w-full">
+
+        <div
+            class="grid lg:grid-cols-5
+                   gap-16 items-center">
+
+
+            <!-- LEFT -->
+
+            <div class="lg:col-span-3">
+
+                <div class="fade-up delay-1">
+
+                    <span
+                        class="inline-flex items-center gap-2
+                               px-4 py-2 rounded-full
+                               text-xs tracking-[.15em]
+                               border border-blue-500/30
+                               bg-blue-600/10
+                               text-blue-300">
+
+                        <span
+                            class="w-1.5 h-1.5
+                                   rounded-full
+                                   bg-blue-400 pulse-dot">
+                        </span>
+
+                        AI SOFTWARE DEVELOPMENT
+
+                    </span>
+
+                </div>
+
+
+                <h1
+                    class="fade-up delay-2
+                           keep-all font-bold
+                           tracking-tight leading-[1.12]
+                           text-5xl md:text-6xl
+                           lg:text-7xl mt-8">
+
+                    <span class="text-white">
+                        AI 기술로
+                    </span>
+
+                    <br>
+
+                    <span class="gradient-text">
+                        더 나은 소프트웨어를
+                    </span>
+
+                    <br>
+
+                    <span class="text-white">
+                        만듭니다
+                    </span>
+
+                </h1>
+
+
+                <p
+                    class="fade-up delay-3
+                           keep-all
+                           text-lg md:text-xl
+                           text-zinc-400
+                           leading-relaxed
+                           max-w-2xl mt-8">
+
+                    <strong class="text-zinc-200">
+                        케이소프트
+                    </strong>는
+
+                    생성형 AI, LLM, RAG, AI Agent,
+                    업무 자동화, 데이터 분석,
+                    웹·앱 기술을 활용하여
+
+                    실제 업무에서 사용할 수 있는
+                    <strong class="text-white">
+                        AI 프로그램과 소프트웨어
+                    </strong>를 개발합니다.
+
+                </p>
+
+
+                <div
+                    class="fade-up delay-4
+                           flex flex-wrap gap-4
+                           items-center mt-10">
+
+                    <a href="#services"
+                       class="btn inline-flex items-center gap-3
+                              bg-blue-600
+                              px-8 py-4 rounded-full
+                              font-semibold text-white">
+
+                        개발 분야 보기
+
+                        <iconify-icon
+                            icon="solar:arrow-right-linear">
+                        </iconify-icon>
+
+                    </a>
+
+
+                    <a href="#technology"
+                       class="inline-flex items-center gap-2
+                              px-5 py-4
+                              text-zinc-400
+                              hover:text-white transition">
+
+                        <iconify-icon
+                            icon="solar:cpu-bolt-linear"
+                            style="font-size:22px;">
+                        </iconify-icon>
+
+                        AI 기술 보기
+
+                    </a>
+
+                </div>
+
+
+                <!-- 분야 -->
+
+                <div
+                    class="fade-up delay-4
+                           flex flex-wrap gap-5
+                           mt-10 text-sm
+                           text-zinc-500">
+
+                    <span class="flex items-center gap-2">
+
+                        <iconify-icon
+                            icon="solar:chat-round-dots-linear"
+                            style="color:#60a5fa;">
+                        </iconify-icon>
+
+                        LLM / RAG
+
+                    </span>
+
+                    <span class="flex items-center gap-2">
+
+                        <iconify-icon
+                            icon="solar:programming-linear"
+                            style="color:#60a5fa;">
+                        </iconify-icon>
+
+                        AI Agent
+
+                    </span>
+
+                    <span class="flex items-center gap-2">
+
+                        <iconify-icon
+                            icon="solar:server-square-linear"
+                            style="color:#60a5fa;">
+                        </iconify-icon>
+
+                        Local AI
+
+                    </span>
+
+                    <span class="flex items-center gap-2">
+
+                        <iconify-icon
+                            icon="solar:settings-linear"
+                            style="color:#60a5fa;">
+                        </iconify-icon>
+
+                        Automation
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT AI PANEL -->
+
+            <div class="lg:col-span-2">
+
+                <div
+                    class="glass rounded-[32px]
+                           p-6 md:p-8
+                           shadow-2xl
+                           shadow-blue-950/20
+                           float">
+
+                    <div
+                        class="flex items-center
+                               justify-between
+                               border-b border-white/10
+                               pb-5">
+
+                        <div class="flex items-center gap-3">
+
+                            <div
+                                class="w-11 h-11
+                                       rounded-2xl
+                                       bg-blue-600/20
+                                       border border-blue-500/30
+                                       flex items-center
+                                       justify-center">
+
+                                <iconify-icon
+                                    icon="solar:cpu-bolt-bold"
+                                    style="
+                                    color:#60a5fa;
+                                    font-size:22px;">
+                                </iconify-icon>
+
+                            </div>
+
+                            <div>
+
+                                <div class="font-semibold">
+                                    KEISOFT AI
+                                </div>
+
+                                <div
+                                    class="text-xs
+                                           text-zinc-500">
+
+                                    AI Software Platform
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="flex items-center
+                                   gap-2 text-xs
+                                   text-green-400">
+
+                            <span
+                                class="w-2 h-2
+                                       bg-green-400
+                                       rounded-full
+                                       pulse-dot">
+                            </span>
+
+                            AI Ready
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- 질문 -->
+
+                    <div class="mt-7">
+
+                        <div
+                            class="text-xs
+                                   text-zinc-500 mb-2">
+
+                            USER
+
+                        </div>
+
+                        <div
+                            class="bg-white/5
+                                   border border-white/10
+                                   rounded-2xl
+                                   p-4 text-sm
+                                   text-zinc-300">
+
+                            사내 PDF 문서를 검색해서
+                            질문에 답하는 AI 시스템을
+                            만들 수 있나요?
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- 답변 -->
+
+                    <div class="mt-5">
+
+                        <div
+                            class="text-xs
+                                   text-blue-400 mb-2">
+
+                            KEISOFT AI
+
+                        </div>
+
+                        <div
+                            class="bg-blue-600/10
+                                   border border-blue-500/20
+                                   rounded-2xl
+                                   p-4 text-sm
+                                   text-zinc-300
+                                   leading-relaxed">
+
+                            가능합니다.
+
+                            PDF 문서를 분석한 후
+                            Vector DB에 저장하고
+
+                            <strong class="text-white">
+                                RAG + LLM
+                            </strong>
+
+                            구조를 적용하면 기업 내부
+                            자료를 기반으로 답변하는
+                            AI 시스템을 구축할 수 있습니다.
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Flow -->
+
+                    <div
+                        class="grid grid-cols-3
+                               gap-2 mt-7">
+
+                        <div
+                            class="rounded-xl
+                                   border border-white/10
+                                   bg-white/[.025]
+                                   py-3 text-center">
+
+                            <div
+                                class="text-blue-400 text-xs">
+
+                                STEP 01
+
+                            </div>
+
+                            <div
+                                class="text-xs
+                                       text-zinc-400 mt-1">
+
+                                Document
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="rounded-xl
+                                   border border-white/10
+                                   bg-white/[.025]
+                                   py-3 text-center">
+
+                            <div
+                                class="text-blue-400 text-xs">
+
+                                STEP 02
+
+                            </div>
+
+                            <div
+                                class="text-xs
+                                       text-zinc-400 mt-1">
+
+                                RAG
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="rounded-xl
+                                   border border-white/10
+                                   bg-white/[.025]
+                                   py-3 text-center">
+
+                            <div
+                                class="text-blue-400 text-xs">
+
+                                STEP 03
+
+                            </div>
+
+                            <div
+                                class="text-xs
+                                       text-zinc-400 mt-1">
+
+                                AI Answer
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     ABOUT
+================================================== -->
+
+<section
+    id="about"
+    class="py-28
+           border-t border-white/[.06]">
+
+    <div
+        class="max-w-7xl
+               mx-auto px-6 lg:px-8">
+
+        <div
+            class="grid lg:grid-cols-2
+                   gap-16 items-center">
+
+            <div class="reveal">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-semibold
+                           tracking-[.2em] mb-5">
+
+                    ABOUT KEISOFT
+
+                </div>
+
+                <h2
+                    class="text-4xl md:text-5xl
+                           font-bold leading-tight
+                           keep-all">
+
+                    AI를 단순히 사용하는 것을 넘어
+
+                    <span class="gradient-text">
+                        실제 프로그램으로 구현합니다.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <div
+                class="reveal
+                       text-zinc-400
+                       leading-8 keep-all">
+
+                <p>
+
+                    케이소프트는 새로운 AI 기술을
+                    실제 서비스와 프로그램에 적용하기 위해
+                    연구하고 개발합니다.
+
+                </p>
+
+                <p class="mt-5">
+
+                    단순히 ChatGPT API를 연결하는 수준을 넘어
+                    데이터베이스, 웹, 앱, 서버,
+                    Vector Database, AI 모델을 하나의
+                    시스템으로 연결하여 실제 사용할 수 있는
+                    AI 서비스를 만드는 것을 목표로 합니다.
+
+                </p>
+
+                <p class="mt-5">
+
+                    OpenAI와 같은 Cloud AI뿐만 아니라
+                    Ollama, llama.cpp 등을 이용한
+                    <strong class="text-white">
+                        Local AI
+                    </strong>
+                    환경도 연구하고 있습니다.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     SERVICES
+================================================== -->
+
+<section
+    id="services"
+    class="py-28 bg-white/[.015]">
+
+    <div
+        class="max-w-7xl mx-auto
+               px-6 lg:px-8">
+
+
+        <div class="reveal text-center">
+
+            <div
+                class="text-blue-400
+                       text-sm font-semibold
+                       tracking-[.2em]">
+
+                DEVELOPMENT
+
+            </div>
+
+            <h2
+                class="text-4xl md:text-5xl
+                       font-bold mt-5">
+
+                AI 프로그램 개발 분야
+
+            </h2>
+
+            <p
+                class="text-zinc-500
+                       mt-5 keep-all">
+
+                AI 모델과 소프트웨어 기술을 결합하여
+                실제 사용할 수 있는 서비스를 개발합니다.
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="grid md:grid-cols-2
+                   lg:grid-cols-3
+                   gap-5 mt-16">
+
+
+            <!-- 1 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:chat-round-dots-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    생성형 AI / 챗봇
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    OpenAI와 다양한 LLM을 이용하여
+                    고객 상담, 지식 검색, 업무 지원 등
+                    목적에 맞는 AI 챗봇과 서비스를 개발합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- 2 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:documents-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    RAG 문서 검색
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    PDF, Word, 사내문서, 데이터베이스 등을
+                    AI가 검색하고 내용을 기반으로
+                    답변할 수 있는 RAG 시스템을 구축합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- 3 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:programming-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    AI Agent
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    AI가 사용자의 질문을 분석하고
+                    필요한 도구와 데이터를 선택해
+                    여러 단계의 작업을 수행하는
+                    AI Agent 시스템을 개발합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- 4 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:server-square-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    Local AI
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    Ollama와 llama.cpp 등을 활용하여
+                    외부 AI API를 사용하지 않고
+                    내부 PC나 서버에서 실행 가능한
+                    AI 환경을 구축합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- 5 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:settings-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    AI 업무 자동화
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    자료 수집, 문서 분석, 데이터 처리,
+                    보고서 생성, 분류, 요약 등
+                    반복적인 업무를 AI와 프로그램으로
+                    자동화합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- 6 -->
+
+            <div
+                class="reveal card glass
+                       rounded-3xl p-7">
+
+                <div
+                    class="w-12 h-12
+                           rounded-2xl
+                           bg-blue-600/15
+                           flex items-center
+                           justify-center">
+
+                    <iconify-icon
+                        icon="solar:monitor-smartphone-bold"
+                        style="
+                        color:#60a5fa;
+                        font-size:24px;">
+                    </iconify-icon>
+
+                </div>
+
+                <h3
+                    class="text-xl
+                           font-semibold mt-6">
+
+                    Web / App / Software
+
+                </h3>
+
+                <p
+                    class="text-zinc-500
+                           leading-7 mt-3
+                           keep-all">
+
+                    AI 기능을 사용할 수 있는
+                    웹사이트, 관리자 시스템,
+                    Windows 프로그램, 모바일 앱,
+                    API 서버를 함께 개발합니다.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     TECHNOLOGY
+================================================== -->
+
+<section
+    id="technology"
+    class="py-28">
+
+    <div
+        class="max-w-7xl mx-auto
+               px-6 lg:px-8">
+
+        <div
+            class="grid lg:grid-cols-2
+                   gap-14 items-center">
+
+            <div class="reveal">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-semibold
+                           tracking-[.2em]">
+
+                    AI TECHNOLOGY
+
+                </div>
+
+                <h2
+                    class="text-4xl md:text-5xl
+                           font-bold mt-5
+                           keep-all">
+
+                    다양한 AI 기술을
+
+                    <span class="gradient-text">
+                        하나의 서비스로 연결합니다.
+                    </span>
+
+                </h2>
+
+                <p
+                    class="text-zinc-500
+                           leading-8 mt-6
+                           max-w-xl keep-all">
+
+                    특정 AI 모델이나 기술에 종속되지 않고
+                    프로젝트에 적합한 기술을 선택하여
+                    AI 시스템을 설계합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="reveal
+                       flex flex-wrap gap-3">
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    OpenAI
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    GPT
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    LLM
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    RAG
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    LangChain
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    LangGraph
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Ollama
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    llama.cpp
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Qdrant
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Vector DB
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Python
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    FastAPI
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    C#
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    .NET
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Blazor
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    Docker
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    PostgreSQL
+                </span>
+
+                <span class="tech-pill glass rounded-full px-5 py-3 text-zinc-400">
+                    MongoDB
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     PROJECT EXAMPLES
+================================================== -->
+
+<section
+    id="projects"
+    class="py-28 bg-white/[.015]">
+
+    <div
+        class="max-w-7xl
+               mx-auto px-6 lg:px-8">
+
+        <div class="reveal text-center">
+
+            <div
+                class="text-blue-400
+                       text-sm font-semibold
+                       tracking-[.2em]">
+
+                AI PROJECT
+
+            </div>
+
+            <h2
+                class="text-4xl md:text-5xl
+                       font-bold mt-5">
+
+                개발 가능한 AI 서비스
+
+            </h2>
+
+            <p
+                class="text-zinc-500 mt-5">
+
+                아이디어에 따라 다양한 형태의
+                AI 서비스를 구현할 수 있습니다.
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="grid md:grid-cols-2
+                   gap-5 mt-16">
+
+
+            <!-- project -->
+
+            <div
+                class="reveal card
+                       rounded-3xl
+                       border border-white/10
+                       overflow-hidden
+                       bg-gradient-to-br
+                       from-blue-950/30
+                       to-black">
+
+                <div class="p-8">
+
+                    <div
+                        class="text-blue-400
+                               text-xs font-semibold">
+
+                        RAG PLATFORM
+
+                    </div>
+
+                    <h3
+                        class="text-2xl
+                               font-semibold mt-3">
+
+                        사내 문서 AI 검색
+
+                    </h3>
+
+                    <p
+                        class="text-zinc-500
+                               leading-7 mt-4
+                               keep-all">
+
+                        회사 내부 PDF, 매뉴얼,
+                        보고서 등의 데이터를 검색해
+                        질문에 답변하는 AI 시스템
+
+                    </p>
+
+                    <div
+                        class="mt-6 flex
+                               flex-wrap gap-2">
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            RAG
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Vector DB
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            LLM
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="reveal card
+                       rounded-3xl
+                       border border-white/10
+                       overflow-hidden
+                       bg-gradient-to-br
+                       from-blue-950/30
+                       to-black">
+
+                <div class="p-8">
+
+                    <div
+                        class="text-blue-400
+                               text-xs font-semibold">
+
+                        AI AGENT
+
+                    </div>
+
+                    <h3
+                        class="text-2xl
+                               font-semibold mt-3">
+
+                        AI 업무 비서
+
+                    </h3>
+
+                    <p
+                        class="text-zinc-500
+                               leading-7 mt-4
+                               keep-all">
+
+                        웹검색, 데이터 분석,
+                        문서 작성 등 여러 도구를
+                        스스로 선택하여 작업하는
+                        AI Agent
+
+                    </p>
+
+                    <div
+                        class="mt-6 flex
+                               flex-wrap gap-2">
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Agent
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Tools
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Automation
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="reveal card
+                       rounded-3xl
+                       border border-white/10
+                       overflow-hidden
+                       bg-gradient-to-br
+                       from-blue-950/30
+                       to-black">
+
+                <div class="p-8">
+
+                    <div
+                        class="text-blue-400
+                               text-xs font-semibold">
+
+                        LOCAL AI
+
+                    </div>
+
+                    <h3
+                        class="text-2xl
+                               font-semibold mt-3">
+
+                        내부망 AI 시스템
+
+                    </h3>
+
+                    <p
+                        class="text-zinc-500
+                               leading-7 mt-4
+                               keep-all">
+
+                        기업 내부 서버에서 LLM을 실행하여
+                        외부 API 전송을 최소화하는
+                        로컬 AI 시스템
+
+                    </p>
+
+                    <div
+                        class="mt-6 flex
+                               flex-wrap gap-2">
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Ollama
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            llama.cpp
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Local LLM
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="reveal card
+                       rounded-3xl
+                       border border-white/10
+                       overflow-hidden
+                       bg-gradient-to-br
+                       from-blue-950/30
+                       to-black">
+
+                <div class="p-8">
+
+                    <div
+                        class="text-blue-400
+                               text-xs font-semibold">
+
+                        AUTOMATION
+
+                    </div>
+
+                    <h3
+                        class="text-2xl
+                               font-semibold mt-3">
+
+                        AI 업무 자동화
+
+                    </h3>
+
+                    <p
+                        class="text-zinc-500
+                               leading-7 mt-4
+                               keep-all">
+
+                        문서 분석, 데이터 수집,
+                        요약, 분류, 보고서 작성 등의
+                        반복 작업을 자동화하는 시스템
+
+                    </p>
+
+                    <div
+                        class="mt-6 flex
+                               flex-wrap gap-2">
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            AI
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            Workflow
+                        </span>
+
+                        <span class="text-xs glass rounded-full px-3 py-2">
+                            API
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     DEVELOPMENT PROCESS
+================================================== -->
+
+<section class="py-28">
+
+    <div
+        class="max-w-7xl
+               mx-auto px-6 lg:px-8">
+
+        <div class="reveal text-center">
+
+            <div
+                class="text-blue-400
+                       text-sm font-semibold
+                       tracking-[.2em]">
+
+                PROCESS
+
+            </div>
+
+            <h2
+                class="text-4xl md:text-5xl
+                       font-bold mt-5">
+
+                아이디어에서 서비스까지
+
+            </h2>
+
+        </div>
+
+
+        <div
+            class="grid md:grid-cols-4
+                   gap-4 mt-16">
+
+
+            <div
+                class="reveal glass
+                       rounded-3xl p-6">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-bold">
+
+                    01
+
+                </div>
+
+                <h3
+                    class="text-lg font-semibold mt-5">
+
+                    요구사항 분석
+
+                </h3>
+
+                <p
+                    class="text-sm
+                           text-zinc-500
+                           leading-6 mt-3">
+
+                    필요한 기능과
+                    AI 적용 가능성을 분석합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="reveal glass
+                       rounded-3xl p-6">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-bold">
+
+                    02
+
+                </div>
+
+                <h3
+                    class="text-lg font-semibold mt-5">
+
+                    AI 설계
+
+                </h3>
+
+                <p
+                    class="text-sm
+                           text-zinc-500
+                           leading-6 mt-3">
+
+                    AI 모델과 RAG,
+                    데이터 구조를 설계합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="reveal glass
+                       rounded-3xl p-6">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-bold">
+
+                    03
+
+                </div>
+
+                <h3
+                    class="text-lg font-semibold mt-5">
+
+                    프로그램 개발
+
+                </h3>
+
+                <p
+                    class="text-sm
+                           text-zinc-500
+                           leading-6 mt-3">
+
+                    웹, 앱, 서버와
+                    AI 기능을 구현합니다.
+
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="reveal glass
+                       rounded-3xl p-6">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-bold">
+
+                    04
+
+                </div>
+
+                <h3
+                    class="text-lg font-semibold mt-5">
+
+                    서비스 구축
+
+                </h3>
+
+                <p
+                    class="text-sm
+                           text-zinc-500
+                           leading-6 mt-3">
+
+                    실제 사용할 수 있도록
+                    시스템을 구성합니다.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CONTACT CTA
+================================================== -->
+
+<section
+    id="contact"
+    class="py-28">
+
+    <div
+        class="max-w-6xl
+               mx-auto px-6">
+
+        <div
+            class="reveal relative
+                   overflow-hidden
+                   rounded-[40px]
+                   border border-blue-500/20
+                   bg-gradient-to-br
+                   from-blue-950/50
+                   via-zinc-950
+                   to-black
+                   px-8 md:px-16
+                   py-16 md:py-20
+                   text-center">
+
+            <div
+                class="orb"
+                style="
+                width:350px;
+                height:350px;
+                background:rgba(37,99,235,.18);
+                top:-170px;
+                left:50%;
+                transform:translateX(-50%);">
+            </div>
+
+
+            <div class="relative z-10">
+
+                <div
+                    class="text-blue-400
+                           text-sm font-semibold
+                           tracking-[.2em]">
+
+                    KEISOFT
+
+                </div>
+
+
+                <h2
+                    class="text-4xl md:text-6xl
+                           font-bold mt-6
+                           keep-all">
+
+                    AI 아이디어를
+
+                    <span class="gradient-text">
+                        실제 프로그램으로
+                    </span>
+
+                </h2>
+
+
+                <p
+                    class="text-zinc-400
+                           max-w-2xl
+                           mx-auto mt-6
+                           leading-8 keep-all">
+
+                    AI를 어디에 적용해야 할지
+                    고민하고 계신가요?
+
+                    <br>
+
+                    아이디어부터 AI 모델 선정,
+                    프로그램 개발 및 서비스 구축까지
+                    함께 고민합니다.
+
+                </p>
+
+
+                <a href="mailto:keisoft@keisoft.kr"
+                   class="btn inline-flex
+                          items-center gap-3
+                          mt-10
+                          bg-blue-600
+                          px-9 py-4
+                          rounded-full
+                          font-semibold">
+
+                    <iconify-icon
+                        icon="solar:letter-linear"
+                        style="font-size:20px;">
+                    </iconify-icon>
+
+                    개발 문의하기
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer
+    class="border-t
+           border-white/[.06]
+           py-10">
+
+    <div
+        class="max-w-7xl
+               mx-auto px-6 lg:px-8
+               flex flex-col md:flex-row
+               gap-6
+               items-center
+               justify-between">
+
+
+        <div class="flex items-center gap-3">
+
+            <div
+                class="w-9 h-9
+                       rounded-xl
+                       bg-blue-600
+                       flex items-center
+                       justify-center">
+
+                <iconify-icon
+                    icon="solar:programming-bold"
+                    style="font-size:18px;">
+                </iconify-icon>
+
+            </div>
+
+            <div>
+
+                <div class="font-semibold">
+                    케이소프트
+                </div>
+
+                <div
+                    class="text-xs
+                           text-zinc-600">
+
+                    KEISOFT AI Software Development
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="text-sm
+                   text-zinc-600">
+
+            © 2026 KEISOFT. All rights reserved.
+
+        </div>
+
+
+        <div
+            class="text-sm
+                   text-zinc-600">
+
+            AI · LLM · RAG · Agent · Automation
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+    /*
+     * 모바일 메뉴
+     */
+    function toggleMenu() {
+
+        const menu =
+            document.getElementById('mobile-menu');
+
+        menu.classList.toggle('open');
+
+    }
+
+
+    /*
+     * 스크롤 등장 애니메이션
+     */
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add('visible');
+
+                            observer
+                                .unobserve(
+                                    entry.target
+                                );
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+    document
+        .querySelectorAll('.reveal')
+        .forEach(
+            element =>
+                observer.observe(element)
+        );
+
+</script>
+
+
+</body>
+</html>
