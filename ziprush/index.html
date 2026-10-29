@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZipRush 소개</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<style>
+  :root {
+    --navy: #1b1f3b; --navy-2: #2b3060; --accent: #ff6b35; --accent-soft: #fff1ea;
+    --bg: #f4f5fa; --card: #ffffff; --text: #1b1f3b; --muted: #6b7090; --line: #e3e5f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11142a; --card: #1b1f3b; --text: #eceefb; --muted: #a2a7c8; --line: #2e3463; --accent-soft: #3a2a2a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); line-height: 1.7;
+         font-family: "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", system-ui, sans-serif; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+  header.hero { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 64px 0 56px; }
+  .logo { width: 64px; height: 64px; display: block; }
+  .hero h1 { font-size: 44px; margin: 18px 0 6px; letter-spacing: -0.5px; }
+  .hero p { margin: 0; font-size: 18px; color: #c9cdea; max-width: 640px; }
+  .tags { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags span { background: rgba(255,255,255,.12); border-radius: 999px; padding: 4px 14px; font-size: 13px; }
+  section { padding: 44px 0 4px; }
+  h2 { font-size: 26px; margin: 0 0 6px; }
+  h2::before { content: ""; display: inline-block; width: 6px; height: 22px; border-radius: 3px; background: var(--accent);
+               margin-right: 10px; vertical-align: -3px; }
+  .lead { color: var(--muted); margin: 0 0 22px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line);
+          border-radius: 14px; overflow: hidden; font-size: 14.5px; }
+  th, td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--accent-soft); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  code { background: var(--accent-soft); border-radius: 6px; padding: 1px 7px; font-size: 13.5px;
+         font-family: Consolas, "Cascadia Mono", monospace; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 5px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .stat b { display: block; font-size: 30px; color: var(--accent); line-height: 1.2; }
+  .stat span { color: var(--muted); font-size: 13.5px; }
+  .note { background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: 8px; padding: 12px 16px;
+          font-size: 14.5px; margin: 14px 0; }
+  footer { padding: 40px 0 56px; color: var(--muted); font-size: 13.5px; text-align: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; text-decoration: none;
+         font-weight: 700; font-size: 17px; padding: 14px 28px; border-radius: 12px; transition: transform .12s, filter .12s; }
+  .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .hero .actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .hero .actions small { color: #aab0d6; font-size: 13px; }
+  .dl-box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 14px 0; }
+  .dl-box p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .dl-box p b { color: var(--text); }
+  @media (max-width: 560px) { .hero h1 { font-size: 34px; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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" width="64" height="64" alt="ZipRush">
+    <h1>ZipRush</h1>
+    <p>모든 CPU 코어를 한꺼번에 써서 빠르게 압축하고 푸는 Windows 압축 프로그램. 탐색기 우클릭만으로 끝납니다.</p>
+    <div class="tags"><span>zip · tar.zst</span><span>멀티스레드</span><span>AES-256 암호</span><span>Windows 10 / 11</span></div>
+    <div class="actions">
+      <a class="btn" href="https://keisoft.kr/ziprush/ZipRush-Setup.msi" download="ZipRush-Setup.msi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>다운로드
+      </a>
+      <small>ZipRush-Setup.msi · Windows 10 / 11 · 관리자 권한 불필요</small>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>주요 기능</h2>
+    <p class="lead">자주 쓰는 압축 작업을 빠르고 단순하게 처리하는 데 집중했습니다.</p>
+    <div class="grid">
+      <div class="card"><h3>병렬 압축</h3><p>zip은 파일마다, tar.zst는 4MB 블록마다 나눠 여러 코어가 동시에 압축합니다.</p></div>
+      <div class="card"><h3>우클릭으로 바로</h3><p>파일·폴더를 우클릭해 zip으로 압축하고, 압축 파일은 우클릭으로 바로 풉니다.</p></div>
+      <div class="card"><h3>내용 미리 보기</h3><p>압축을 풀지 않고 폴더 트리와 파일 목록을 보고, 이름으로 검색하고, 파일을 더블클릭해 열 수 있습니다.</p></div>
+      <div class="card"><h3>일부만 풀기</h3><p>목록에서 원하는 파일이나 폴더만 골라 풉니다.</p></div>
+      <div class="card"><h3>암호 zip</h3><p>압축 설정에서 암호를 입력하면 AES-256으로 암호화한 zip이 만들어집니다.</p></div>
+      <div class="card"><h3>끌어다 놓기</h3><p>창에 파일을 끌어다 놓으면 압축하고, 압축 파일을 놓으면 내용을 엽니다.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>속도 예시</h2>
+    <p class="lead">node_modules가 들어 있는 ECharts 프로젝트 폴더로 이 PC에서 직접 측정한 값입니다. PC 사양과 디스크에 따라 달라집니다.</p>
+    <div class="stats">
+      <div class="stat"><b>21,245개</b><span>파일 (폴더 3,427개)</span></div>
+      <div class="stat"><b>331MB → 82MB</b><span>zip 압축 크기</span></div>
+      <div class="stat"><b>2.7초</b><span>압축 시간</span></div>
+      <div class="stat"><b>9.5초</b><span>풀기 시간 · 원본과 내용 동일</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>탐색기 우클릭 메뉴</h2>
+    <p class="lead">설치할 때 "탐색기 우클릭 메뉴" 기능을 켜 두면 등록됩니다. Windows 11에서는 "추가 옵션 표시"를 눌러야 보일 수 있습니다.</p>
+    <table>
+      <tr><th style="width:34%">대상</th><th style="width:36%">메뉴</th><th>동작</th></tr>
+      <tr><td>파일 · 폴더</td><td>ZipRush로 압축 (zip)</td><td>묻지 않고 바로 같은 위치에 zip 생성. 이름이 겹치면 <code>(1)</code>을 붙임</td></tr>
+      <tr><td>파일 · 폴더</td><td>ZipRush로 압축 설정...</td><td>형식, 압축 수준, 암호를 고르는 창을 먼저 띄움</td></tr>
+      <tr><td>zip · zst</td><td>ZipRush로 열기</td><td>ZipRush 창에서 내용을 봄</td></tr>
+      <tr><td>zip · zst</td><td>ZipRush로 압축파일 이름 폴더에 풀기</td><td><code>abc.zip</code> → 같은 위치의 <code>abc</code> 폴더에 풀기</td></tr>
+      <tr><td>zip · zst</td><td>ZipRush로 여기에 풀기</td><td>압축 파일이 있는 폴더에 바로 풀기 (겹치는 파일이 있으면 먼저 확인)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>zip과 tar.zst</h2>
+    <table>
+      <tr><th style="width:22%"></th><th>zip</th><th>tar.zst</th></tr>
+      <tr><td>호환성</td><td>Windows 탐색기와 거의 모든 프로그램에서 열림</td><td>ZipRush 같은 지원 프로그램에서 열림</td></tr>
+      <tr><td>속도 · 용량</td><td>빠름</td><td>zip보다 더 빠르고 작게 압축되는 경우가 많음</td></tr>
+      <tr><td>암호</td><td>AES-256 지원</td><td>지원하지 않음</td></tr>
+      <tr><td>큰 파일</td><td>파일 하나 4GB, 항목 65,535개까지</td><td>제한 없음</td></tr>
+    </table>
+    <div class="note">기본은 zip입니다. 아주 큰 파일이나 파일 수가 많은 폴더는 압축 설정에서 tar.zst를 고르세요.</div>
+  </section>
+
+  <section>
+    <h2>설치와 제거</h2>
+    <div class="dl-box">
+      <p><b>ZipRush-Setup.msi</b><br>keisoft.kr에서 내려받습니다.</p>
+      <a class="btn" href="https://keisoft.kr/ziprush/ZipRush-Setup.msi" download="ZipRush-Setup.msi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 20h16"/></svg>다운로드
+      </a>
+    </div>
+    <ol>
+      <li>내려받은 <code>ZipRush-Setup.msi</code>를 실행합니다. 현재 사용자 전용 설치라 관리자 권한이 필요 없습니다.</li>
+      <li>기능 선택 화면에서 "탐색기 우클릭 메뉴"와 "zip / zst 파일을 ZipRush로 열기"를 켜거나 끕니다.</li>
+      <li>마지막 화면의 체크박스를 켜 두면 Windows 설정 화면이 열립니다. 거기서 <code>.zip</code>을 ZipRush로 선택하세요.</li>
+    </ol>
+    <div class="note">Windows 10/11은 보안상 프로그램이 스스로 기본 앱이 되는 것을 막습니다. 그래서 설정 화면에서 한 번만 직접 골라야 합니다. ZipRush 창 위의 안내 줄에서도 같은 화면을 열 수 있습니다.</div>
+    <p>제거는 Windows 설정의 "설치된 앱"(제어판의 프로그램 제거)에서 ZipRush를 지우면 됩니다. 우클릭 메뉴와 연결 정보도 함께 사라집니다.</p>
+  </section>
+
+  <section>
+    <h2>알아둘 점</h2>
+    <ul>
+      <li>암호가 걸린 zip은 병렬이 아니라서 더 느리고, 빈 폴더는 담기지 않습니다.</li>
+      <li>압축 파일 안의 실행 파일(<code>.exe</code> 등)을 더블클릭해 열 때는 먼저 확인을 묻습니다.</li>
+      <li>압축 파일 안의 경로가 풀 위치 밖을 가리키면 풀기를 거부합니다.</li>
+      <li>GPU는 사용하지 않습니다. 압축 알고리즘의 특성상 일반 파일 압축에서는 CPU 병렬 처리가 더 효율적입니다.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>ZipRush 1.1 · 멀티스레드 zip / tar.zst 압축 프로그램</footer>
+</body>
+</html>
