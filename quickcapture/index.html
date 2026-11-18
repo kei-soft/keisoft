@@ -29,6 +29,14 @@
     background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .hero p { color: var(--sub); font-size: 1.1rem; margin: 0 auto; max-width: 560px; }
+  .btn {
+    display: inline-block; margin-top: 28px; padding: 14px 30px; border-radius: 12px; color: #fff; font-weight: 600; font-size: 1.05rem;
+    text-decoration: none; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 8px 24px rgba(80, 90, 230, .35);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(80, 90, 230, .5); }
+  .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .meta { display: block; margin-top: 10px; font-size: .85rem; color: var(--sub); }
   /* #endregion */
 
   /* #region 카드 / 표 */
@@ -64,6 +72,8 @@
     </svg>
     <h1>QuickCapture</h1>
     <p>항상 화면 위에 떠 있다가, 필요한 순간 바로 찍는 가벼운 Windows 캡처 도구입니다.</p>
+    <a class="btn" href="https://github.com/kei-soft/keisoft/raw/main/quickcapture/QuickCapture-1.0.1.msi" download>⬇ 설치 파일 다운로드</a>
+    <span class="meta">QuickCapture-1.0.1.msi · 65.5 MB · Windows 10/11</span>
   </header>
   <!-- #endregion -->
 
@@ -112,7 +122,8 @@
   <!-- #region 설치 -->
   <section>
     <h2>설치</h2>
-    <p class="lead">제공된 <b>QuickCapture-1.0.1.msi</b> 를 실행하면 됩니다.</p>
+    <p class="lead"><a href="https://github.com/kei-soft/keisoft/raw/main/quickcapture/QuickCapture-1.0.1.msi" style="color:var(--accent)" download>QuickCapture-1.0.1.msi</a> 를 내려받아 실행하면 됩니다.
+      (<a href="https://github.com/kei-soft/keisoft/blob/main/quickcapture/QuickCapture-1.0.1.msi" style="color:var(--sub)">GitHub 페이지에서 보기</a>)</p>
     <div class="grid">
       <div class="card"><h3>관리자 권한 불필요</h3><p>현재 사용자 전용으로 설치되고, 시작 메뉴에 바로가기가 만들어집니다.</p></div>
       <div class="card"><h3>.NET 포함</h3><p>런타임이 함께 들어 있어 별도로 설치할 것이 없습니다.</p></div>
