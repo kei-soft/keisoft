@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickCapture — 빠른 화면 캡처</title>
+<style>
+  /* #region 테마 */
+  :root {
+    --bg: #1e1f24; --panel: #282a32; --line: #3a3d48; --text: #ebecf0; --sub: #9aa0ae;
+    --accent: #3b82f6; --accent2: #7c3aed;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); line-height: 1.7;
+    font-family: "Segoe UI Variable", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+  h2 { font-size: 1.5rem; margin: 0 0 6px; }
+  .lead { color: var(--sub); margin: 0 0 28px; }
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  /* #endregion */
+
+  /* #region 히어로 */
+  .hero { text-align: center; padding: 72px 0 60px; }
+  .hero svg { width: 96px; height: 96px; filter: drop-shadow(0 8px 20px rgba(80, 90, 230, .45)); }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3rem); margin: 18px 0 8px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--sub); font-size: 1.1rem; margin: 0 auto; max-width: 560px; }
+  /* #endregion */
+
+  /* #region 카드 / 표 */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .card p { margin: 0; color: var(--sub); font-size: .95rem; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 14px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--sub); font-weight: 600; font-size: .85rem; }
+  tr:last-child td { border-bottom: 0; }
+  kbd {
+    background: var(--line); border-radius: 6px; padding: 2px 8px; font-family: inherit; font-size: .9em; white-space: nowrap;
+  }
+  ol.steps { padding-left: 1.2em; } ol.steps li { margin-bottom: 8px; }
+  .note { background: var(--panel); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; color: var(--sub); }
+  footer { text-align: center; color: var(--sub); padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: .9rem; }
+  /* #endregion */
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- #region 소개 -->
+  <header class="hero">
+    <!-- 앱 아이콘과 같은 도안 (벡터) -->
+    <svg viewBox="0 0 48 48" aria-label="QuickCapture 아이콘">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+      <rect width="48" height="48" rx="11" fill="url(#g)"/>
+      <path d="M11 20V11h9M28 11h9v9M11 28v9h9M28 37h9v-9" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="24" cy="24" r="4" fill="#fff"/>
+    </svg>
+    <h1>QuickCapture</h1>
+    <p>항상 화면 위에 떠 있다가, 필요한 순간 바로 찍는 가벼운 Windows 캡처 도구입니다.</p>
+  </header>
+  <!-- #endregion -->
+
+  <!-- #region 특징 -->
+  <section>
+    <h2>왜 빠른가요</h2>
+    <p class="lead">프로그램이 메모리에 상주하기 때문에, 누르는 즉시 화면을 찍습니다. 앱을 새로 띄우는 대기 시간이 없습니다.</p>
+    <div class="grid">
+      <div class="card"><h3>한 번의 동작으로 선택</h3><p>드래그하면 영역, 클릭하면 마우스 아래 창이 캡처됩니다. 모드를 따로 고를 필요가 없습니다.</p></div>
+      <div class="card"><h3>메뉴·툴팁도 캡처</h3><p>선택 화면을 띄우기 전에 먼저 화면을 찍어서, 클릭하면 사라지는 메뉴와 툴팁도 그대로 담깁니다.</p></div>
+      <div class="card"><h3>바로 편집</h3><p>사각형, 선, 모자이크, 블러를 넣고 색과 굵기를 정합니다. 도형은 옮기거나 지울 수 있고 되돌리기도 됩니다.</p></div>
+      <div class="card"><h3>바로 저장·복사</h3><p>캡처하면 클립보드에 자동 복사됩니다. 이름을 넣고 <kbd>Enter</kbd> 한 번이면 PNG로 저장됩니다.</p></div>
+      <div class="card"><h3>어디서든 시작</h3><p>떠 있는 아이콘, 트레이 아이콘, 전역 단축키 중 편한 방법으로 시작합니다.</p></div>
+      <div class="card"><h3>다크 디자인</h3><p>화면 배율이 달라도 선명하게 보이도록 모니터별 DPI를 지원합니다.</p></div>
+    </div>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 사용법 -->
+  <section>
+    <h2>사용법</h2>
+    <ol class="steps">
+      <li><b>캡처 시작</b> — 떠 있는 아이콘을 클릭하거나 <kbd>PrtSc</kbd> 를 누릅니다.</li>
+      <li><b>대상 선택</b> — 영역을 드래그하거나 창을 클릭합니다. 취소는 <kbd>Esc</kbd> 입니다.</li>
+      <li><b>편집</b> — 필요하면 도형이나 모자이크를 넣습니다.</li>
+      <li><b>저장</b> — <kbd>Ctrl</kbd>+<kbd>S</kbd> 로 이름을 정하고 <kbd>Enter</kbd> 를 누릅니다. <kbd>Ctrl</kbd>+<kbd>O</kbd> 로 저장 폴더가 열립니다.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>단축키</h2>
+    <table>
+      <tr><th>키</th><th>동작</th></tr>
+      <tr><td><kbd>PrtSc</kbd> / <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></td><td>캡처 시작 (어떤 창이 앞에 있어도 동작)</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>캡처 취소 / 편집창 닫기</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>이름 입력 후 PNG 저장</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>편집한 이미지를 클립보드에 복사</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>O</kbd></td><td>저장 폴더 열기 (저장한 파일이 선택된 상태)</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>되돌리기 (그리기·이동·삭제)</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>선택한 도형 삭제</td></tr>
+      <tr><td><kbd>Shift</kbd> + 선 드래그</td><td>가로/세로 직선으로 고정</td></tr>
+    </table>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 설치 -->
+  <section>
+    <h2>설치</h2>
+    <p class="lead">제공된 <b>QuickCapture-1.0.1.msi</b> 를 실행하면 됩니다.</p>
+    <div class="grid">
+      <div class="card"><h3>관리자 권한 불필요</h3><p>현재 사용자 전용으로 설치되고, 시작 메뉴에 바로가기가 만들어집니다.</p></div>
+      <div class="card"><h3>.NET 포함</h3><p>런타임이 함께 들어 있어 별도로 설치할 것이 없습니다.</p></div>
+      <div class="card"><h3>자동 실행</h3><p>아이콘 우클릭 메뉴의 "Windows 시작 시 자동 실행"을 체크하면 부팅할 때 함께 시작합니다.</p></div>
+    </div>
+    <p class="note" style="margin-top:18px">서명되지 않은 설치 파일이라 처음 실행할 때 Windows SmartScreen 경고가 나올 수 있습니다. 제거는 설정 &gt; 앱에서 할 수 있습니다.</p>
+  </section>
+  <!-- #endregion -->
+
+  <footer>QuickCapture 1.0.1 · Windows 10/11 · WPF (.NET 10)</footer>
+</div>
+</body>
+</html>
