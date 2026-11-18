@@ -7,7 +7,7 @@
     <title>개발 SW | 케이소프트</title>
 
     <meta name="description"
-          content="케이소프트가 직접 개발한 Windows 프로그램 소개: ClipPin 클립보드 관리자, 노을 플레이어, WorkLog 업무일지, ZipRush 압축 프로그램.">
+          content="케이소프트가 직접 개발한 Windows 프로그램 소개: ClipPin 클립보드 관리자, NoeulPlayer, WorkLog 업무일지, ZipRush 압축 프로그램.">
 
     <!-- Pretendard -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -245,7 +245,7 @@
         <!-- PC 메뉴 -->
         <div class="hidden md:flex items-center gap-1">
             <a href="#clippin" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">ClipPin</a>
-            <a href="#noeulplayer" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">노을 플레이어</a>
+            <a href="#noeulplayer" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">NoeulPlayer</a>
             <a href="#worklog" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">WorkLog</a>
             <a href="#ziprush" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">ZipRush</a>
         </div>
@@ -276,7 +276,7 @@
     </button>
 
     <a onclick="toggleMenu()" href="#clippin" class="text-2xl text-zinc-300">ClipPin</a>
-    <a onclick="toggleMenu()" href="#noeulplayer" class="text-2xl text-zinc-300">노을 플레이어</a>
+    <a onclick="toggleMenu()" href="#noeulplayer" class="text-2xl text-zinc-300">NoeulPlayer</a>
     <a onclick="toggleMenu()" href="#worklog" class="text-2xl text-zinc-300">WorkLog</a>
     <a onclick="toggleMenu()" href="#ziprush" class="text-2xl text-zinc-300">ZipRush</a>
     <a href="../" class="text-2xl text-zinc-500">← 메인으로</a>
@@ -290,40 +290,16 @@
      HERO
 ================================================== -->
 
-<section class="relative pt-40 pb-16 overflow-hidden">
-
-    <div class="orb w-[500px] h-[500px] bg-blue-600/20 -top-40 left-1/2 -translate-x-1/2"></div>
-
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-
-        <div class="fade-up text-blue-400 text-sm font-semibold tracking-[.2em]">SOFTWARE</div>
-
-        <h1 class="fade-up delay-1 text-4xl md:text-6xl font-bold mt-5 leading-tight keep-all">
-            케이소프트가 만든 <span class="gradient-text">프로그램</span>
-        </h1>
-
-        <p class="fade-up delay-2 text-zinc-400 mt-6 leading-8 keep-all">
-            직접 개발해서 배포하는 Windows 프로그램입니다.<br class="hidden md:block">
-            화면을 보고, 필요한 프로그램을 바로 내려받으세요.
-        </p>
-
-        <div class="fade-up delay-3 mt-9 flex flex-wrap justify-center gap-2">
-            <a href="#clippin" class="tech-pill glass rounded-full px-4 py-2 text-sm text-zinc-300">ClipPin</a>
-            <a href="#noeulplayer" class="tech-pill glass rounded-full px-4 py-2 text-sm text-zinc-300">노을 플레이어</a>
-            <a href="#worklog" class="tech-pill glass rounded-full px-4 py-2 text-sm text-zinc-300">WorkLog</a>
-            <a href="#ziprush" class="tech-pill glass rounded-full px-4 py-2 text-sm text-zinc-300">ZipRush</a>
-        </div>
-
+<section class="pt-36 pb-6">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold keep-all">개발 SW</h1>
+        <p class="text-zinc-500 mt-4 keep-all">케이소프트가 만든 Windows 프로그램</p>
     </div>
-
 </section>
 
-<!-- ==================================================
-     ClipPin
-================================================== -->
-<section id="clippin" class="py-24  scroll-mt-16">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+<section id="clippin" class="py-16 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
             <div class="reveal">
                 <div class="space-y-5">
@@ -335,40 +311,9 @@
             </div>
 
             <div class="reveal">
-                <div class="flex items-center gap-3">
-                    <iconify-icon icon="solar:clipboard-list-bold" style="font-size:30px;color:#60a5fa;"></iconify-icon>
-                    <div class="text-blue-400 text-xs font-semibold tracking-[.2em]">CLIPBOARD MANAGER</div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">ClipPin</h2>
-                <p class="text-zinc-400 leading-8 mt-5 keep-all">복사한 텍스트와 이미지를 모두 기록하고, 자주 쓰는 항목은 고정해 숫자 키 한 번으로 붙여넣는 Windows 클립보드 관리자.</p>
-                <ul class="mt-8 space-y-4">
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">텍스트·이미지 기록</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">복사하는 즉시 저장하고, 같은 내용은 중복 없이 맨 위로 올라옵니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">고정 항목 + 숫자 키</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">Ctrl+P로 고정한 항목 1~9번을 숫자 하나로 바로 붙여넣습니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">자동 붙여넣기</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">항목을 고르면 쓰던 창으로 돌아가 Ctrl+V까지 알아서 보냅니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">그룹 · 바로 검색</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">고정 항목을 그룹으로 묶고, 팝업을 열자마자 입력해 걸러냅니다.</div></div>
-                    </li>
-                </ul>
-                <div class="mt-7 flex flex-wrap gap-2">
-                    <span class="text-xs glass rounded-full px-3 py-2">Windows x64</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">내 PC에만 저장</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">관리자 권한 불필요</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
+                <h2 class="text-3xl md:text-4xl font-bold">ClipPin</h2>
+                <p class="text-zinc-400 leading-8 mt-4 keep-all">복사한 텍스트와 이미지를 모두 기록하고, 자주 쓰는 항목은 고정해 숫자 키 한 번으로 붙여넣는 Windows 클립보드 관리자.</p>
+                <div class="mt-7 flex flex-wrap gap-3">
                     <a href="../clippin/ClipPin-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
                     <a href="../clippin/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
                 </div>
@@ -378,57 +323,23 @@
     </div>
 </section>
 
-<!-- ==================================================
-     노을 플레이어
-================================================== -->
-<section id="noeulplayer" class="py-24 bg-white/[.015] scroll-mt-16">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:[direction:rtl]">
+<section id="noeulplayer" class="py-16 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-            <div class="reveal lg:[direction:ltr]">
+            <div class="reveal">
                 <div class="space-y-5">
                 <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
-                    <img src="img/noeulplayer.png" alt="노을 플레이어 재생 화면" loading="lazy"
+                    <img src="img/noeulplayer.png" alt="NoeulPlayer 재생 화면" loading="lazy"
                          class="w-full h-auto rounded-xl block">
                 </div>
                 </div>
             </div>
 
-            <div class="reveal lg:[direction:ltr]">
-                <div class="flex items-center gap-3">
-                    <iconify-icon icon="solar:play-circle-bold" style="font-size:30px;color:#60a5fa;"></iconify-icon>
-                    <div class="text-blue-400 text-xs font-semibold tracking-[.2em]">VIDEO PLAYER</div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">노을 플레이어</h2>
-                <p class="text-zinc-400 leading-8 mt-5 keep-all">코덱을 따로 깔 필요 없이 바로 재생되는, 어두운 화면에 꼭 필요한 버튼만 남긴 가볍고 깔끔한 Windows 동영상 플레이어(NoeulPlayer).</p>
-                <ul class="mt-8 space-y-4">
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">대부분의 포맷 바로 재생</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">MP4, MKV, AVI, WebM, HEVC 등을 추가 설치 없이 재생합니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">탐색 바 미리보기</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">탐색 바에 마우스를 올리면 그 위치의 장면이 바로 보입니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">원본 해상도 캡처</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">Ctrl+E 한 번이면 현재 장면이 PNG로 저장됩니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">재생목록 · 배속 · 전체 화면</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">0.2~4배속, 더블클릭 전체 화면, 키보드 조작을 지원합니다.</div></div>
-                    </li>
-                </ul>
-                <div class="mt-7 flex flex-wrap gap-2">
-                    <span class="text-xs glass rounded-full px-3 py-2">버전 1.1.0</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">Windows 10/11 64비트</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">무료</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
+            <div class="reveal">
+                <h2 class="text-3xl md:text-4xl font-bold">NoeulPlayer</h2>
+                <p class="text-zinc-400 leading-8 mt-4 keep-all">코덱을 따로 깔 필요 없이 바로 재생되는, 어두운 화면에 꼭 필요한 버튼만 남긴 가볍고 깔끔한 Windows 동영상 플레이어.</p>
+                <div class="mt-7 flex flex-wrap gap-3">
                     <a href="../noeulplayer/NoeulPlayer-1.1.0-x64.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드 (일반판)</a>
                     <a href="../noeulplayer/NoeulPlayer-Lite-1.1.0-x64.msi" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">Lite판</a>
                     <a href="../noeulplayer/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
@@ -439,12 +350,9 @@
     </div>
 </section>
 
-<!-- ==================================================
-     WorkLog
-================================================== -->
-<section id="worklog" class="py-24  scroll-mt-16">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+<section id="worklog" class="py-16 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
             <div class="reveal">
                 <div class="space-y-5">
@@ -452,48 +360,13 @@
                     <img src="img/worklog-1.png" alt="WorkLog 일지 화면: 탭, 할 일, 본문 편집기" loading="lazy"
                          class="w-full h-auto rounded-xl block">
                 </div>
-                <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
-                    <img src="img/worklog-2.png" alt="WorkLog 표와 이미지가 들어간 일지, 쿼리 결과 표" loading="lazy"
-                         class="w-full h-auto rounded-xl block">
-                </div>
                 </div>
             </div>
 
             <div class="reveal">
-                <div class="flex items-center gap-3">
-                    <iconify-icon icon="solar:notebook-bold" style="font-size:30px;color:#60a5fa;"></iconify-icon>
-                    <div class="text-blue-400 text-xs font-semibold tracking-[.2em]">WORK JOURNAL</div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">WorkLog</h2>
-                <p class="text-zinc-400 leading-8 mt-5 keep-all">날짜별 업무일지에 표·그림·할 일·SQL 쿼리를 한곳에 기록하고, 결과까지 그 자리에서 확인하는 Windows 업무일지 프로그램.</p>
-                <ul class="mt-8 space-y-4">
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">날짜별 일지 + 정보 노트</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">월별로 묶인 일지와 날짜 없는 메모(서버 주소, 자주 쓰는 쿼리)를 나눠 관리합니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">열린 일지는 탭으로</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">브라우저처럼 탭으로 열리고, 다음 실행 때도 그대로 돌아옵니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">표 · 그림 · 할 일</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">본문에 표와 이미지를 넣고, 상단 할 일 목록으로 하루를 정리합니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">SQL 실행 결과 확인</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">일지 안에서 쿼리를 실행하고 결과 표를 바로 확인합니다.</div></div>
-                    </li>
-                </ul>
-                <div class="mt-7 flex flex-wrap gap-2">
-                    <span class="text-xs glass rounded-full px-3 py-2">Windows 10/11 64비트</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">MSI 설치 파일</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">내 PC에만 저장</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
+                <h2 class="text-3xl md:text-4xl font-bold">WorkLog</h2>
+                <p class="text-zinc-400 leading-8 mt-4 keep-all">날짜별 업무일지에 표·그림·할 일·SQL 쿼리를 한곳에 기록하고, 결과까지 그 자리에서 확인하는 Windows 업무일지 프로그램.</p>
+                <div class="mt-7 flex flex-wrap gap-3">
                     <a href="../worklog/WorkLog-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
                     <a href="../worklog/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
                 </div>
@@ -503,14 +376,11 @@
     </div>
 </section>
 
-<!-- ==================================================
-     ZipRush
-================================================== -->
-<section id="ziprush" class="py-24 bg-white/[.015] scroll-mt-16">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:[direction:rtl]">
+<section id="ziprush" class="py-16 scroll-mt-16">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-            <div class="reveal lg:[direction:ltr]">
+            <div class="reveal">
                 <div class="space-y-5">
                 <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
                     <img src="img/ziprush.png" alt="ZipRush 압축 파일 내용 보기 화면" loading="lazy"
@@ -519,41 +389,10 @@
                 </div>
             </div>
 
-            <div class="reveal lg:[direction:ltr]">
-                <div class="flex items-center gap-3">
-                    <iconify-icon icon="solar:zip-file-bold" style="font-size:30px;color:#60a5fa;"></iconify-icon>
-                    <div class="text-blue-400 text-xs font-semibold tracking-[.2em]">COMPRESSION</div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4">ZipRush</h2>
-                <p class="text-zinc-400 leading-8 mt-5 keep-all">모든 CPU 코어를 한꺼번에 써서 빠르게 압축하고 푸는 Windows 압축 프로그램. 탐색기 우클릭만으로 끝납니다.</p>
-                <ul class="mt-8 space-y-4">
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">병렬 압축</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">zip은 파일마다, tar.zst는 4MB 블록마다 여러 코어가 동시에 압축합니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">탐색기 우클릭</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">파일·폴더를 우클릭해 압축하고, 압축 파일도 우클릭으로 바로 풉니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">내용 미리 보기 · 일부만 풀기</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">풀지 않고 폴더 트리를 보고 검색하며, 원하는 파일만 골라 풉니다.</div></div>
-                    </li>
-                    <li class="flex gap-3">
-                        <iconify-icon icon="solar:check-circle-bold" style="font-size:20px;color:#60a5fa;flex:none;margin-top:3px;"></iconify-icon>
-                        <div><div class="font-semibold">AES-256 암호 zip</div>
-                        <div class="text-sm text-zinc-500 leading-6 keep-all">압축 설정에서 암호를 입력하면 암호화된 zip이 만들어집니다.</div></div>
-                    </li>
-                </ul>
-                <div class="mt-7 flex flex-wrap gap-2">
-                    <span class="text-xs glass rounded-full px-3 py-2">zip · tar.zst</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">멀티스레드</span>
-                    <span class="text-xs glass rounded-full px-3 py-2">관리자 권한 불필요</span>
-                </div>
-                <div class="mt-8 flex flex-wrap gap-3">
+            <div class="reveal">
+                <h2 class="text-3xl md:text-4xl font-bold">ZipRush</h2>
+                <p class="text-zinc-400 leading-8 mt-4 keep-all">모든 CPU 코어를 한꺼번에 써서 빠르게 압축하고 푸는 Windows 압축 프로그램. 탐색기 우클릭만으로 끝납니다.</p>
+                <div class="mt-7 flex flex-wrap gap-3">
                     <a href="../ziprush/ZipRush-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
                     <a href="../ziprush/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
                 </div>
