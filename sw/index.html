@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>개발 SW | 케이소프트</title>
-
-    <meta name="description"
-          content="케이소프트가 직접 개발한 Windows 프로그램 소개: ClipPin 클립보드 관리자, NoeulPlayer, WorkLog 업무일지, ZipRush 압축 프로그램.">
+    <meta name="description" content="케이소프트가 직접 개발한 Windows 프로그램: ClipPin, NoeulPlayer, WorkLog, ZipRush.">
 
     <!-- Pretendard -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
 
     <!-- Tailwind -->
     <script>
-        tailwind = {
-            config: {
-                theme: {
-                    extend: {
-                        fontFamily: {
-                            sans: ['Pretendard Variable', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
-                        }
-                    }
-                }
-            }
-        }
+        tailwind = { config: { theme: { extend: { fontFamily: {
+            sans: ['Pretendard Variable', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
+        } } } } }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -218,20 +205,14 @@
             display: flex;
         }
     </style>
-
 </head>
 
 <body>
 
-<!-- ==================================================
-     HEADER
-================================================== -->
-
+<!-- HEADER -->
 <header class="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
-
     <nav class="glass rounded-full px-4 py-2.5 flex items-center gap-2 shadow-2xl shadow-black/40">
 
-        <!-- Logo : 메인으로 -->
         <a href="../" class="flex items-center gap-2 mr-3">
             <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
                 <iconify-icon icon="solar:programming-bold" style="font-size:18px;color:white;"></iconify-icon>
@@ -242,215 +223,165 @@
             </div>
         </a>
 
-        <!-- PC 메뉴 -->
-        <div class="hidden md:flex items-center gap-1">
-            <a href="#clippin" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">ClipPin</a>
-            <a href="#noeulplayer" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">NoeulPlayer</a>
-            <a href="#worklog" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">WorkLog</a>
-            <a href="#ziprush" class="px-3.5 py-2 text-sm text-zinc-400 hover:text-white transition">ZipRush</a>
-        </div>
+        <!-- 언어 전환 -->
+        <button id="lang-btn" type="button" aria-label="Language"
+                class="px-3 py-2 text-sm text-zinc-300 hover:text-white transition">EN</button>
 
-        <a href="../#contact"
-           class="ml-2 px-5 py-2 bg-blue-600 rounded-full text-sm font-semibold text-white btn">
-            개발 문의
+        <a href="../#contact" class="ml-1 px-5 py-2 bg-blue-600 rounded-full text-sm font-semibold text-white btn">
+            <span data-ko="개발 문의" data-en="Contact">개발 문의</span>
         </a>
 
-        <!-- 모바일 버튼 -->
-        <button onclick="toggleMenu()" aria-label="메뉴"
-                class="md:hidden ml-1 w-8 h-8 flex items-center justify-center">
-            <iconify-icon icon="solar:hamburger-menu-linear" style="font-size:20px;"></iconify-icon>
-        </button>
-
     </nav>
-
 </header>
-
-
-<!-- 모바일 메뉴 -->
-<div id="mobile-menu"
-     class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex-col items-center justify-center gap-8">
-
-    <button onclick="toggleMenu()" aria-label="닫기"
-            class="absolute top-6 right-6 w-11 h-11 rounded-full glass flex items-center justify-center">
-        <iconify-icon icon="solar:close-linear" style="font-size:24px;"></iconify-icon>
-    </button>
-
-    <a onclick="toggleMenu()" href="#clippin" class="text-2xl text-zinc-300">ClipPin</a>
-    <a onclick="toggleMenu()" href="#noeulplayer" class="text-2xl text-zinc-300">NoeulPlayer</a>
-    <a onclick="toggleMenu()" href="#worklog" class="text-2xl text-zinc-300">WorkLog</a>
-    <a onclick="toggleMenu()" href="#ziprush" class="text-2xl text-zinc-300">ZipRush</a>
-    <a href="../" class="text-2xl text-zinc-500">← 메인으로</a>
-
-</div>
-
 
 <main>
 
-<!-- ==================================================
-     HERO
-================================================== -->
-
-<section class="pt-36 pb-6">
+<section class="pt-36 pb-10">
     <div class="max-w-6xl mx-auto px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold keep-all">개발 SW</h1>
-        <p class="text-zinc-500 mt-4 keep-all">케이소프트가 만든 Windows 프로그램</p>
+        <h1 class="text-4xl md:text-5xl font-bold" data-ko="개발 SW" data-en="Software">개발 SW</h1>
+        <p class="text-zinc-500 mt-4" data-ko="케이소프트가 만든 Windows 프로그램" data-en="Windows programs built by KEISOFT">케이소프트가 만든 Windows 프로그램</p>
     </div>
 </section>
 
-<section id="clippin" class="py-16 scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            <div class="reveal">
-                <div class="space-y-5">
-                <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50 max-w-md mx-auto w-full">
-                    <img src="img/clippin.png" alt="ClipPin 클립보드 기록 팝업 화면" loading="lazy"
-                         class="w-full h-auto rounded-xl block">
+<section class="pb-24">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="grid sm:grid-cols-2 gap-6">
+        <article class="reveal card rounded-3xl border border-white/10 overflow-hidden bg-white/[.03] flex flex-col">
+            <a href="../clippin/" class="block aspect-[16/10] overflow-hidden bg-black">
+                <img src="img/clippin.png" alt="ClipPin" loading="lazy" class="w-full h-full object-cover object-top">
+            </a>
+            <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3">
+                    <img src="img/icon-clippin.png" alt="" width="44" height="44" class="w-11 h-11 rounded-xl">
+                    <div>
+                        <h2 class="text-xl font-bold leading-tight">ClipPin</h2>
+                        <span class="inline-block mt-1 text-[11px] font-semibold text-blue-300 bg-blue-500/10 rounded-full px-2.5 py-0.5" data-ko="클립보드" data-en="Clipboard">클립보드</span>
+                    </div>
                 </div>
-                </div>
+                <p class="text-zinc-400 text-sm leading-7 mt-4 keep-all flex-1" data-ko="복사한 텍스트·이미지를 기록하고, 고정 항목을 숫자 키로 붙여넣는 클립보드 관리자" data-en="A clipboard manager that records text and images and pastes pinned items with one number key">복사한 텍스트·이미지를 기록하고, 고정 항목을 숫자 키로 붙여넣는 클립보드 관리자</p>
+                <a href="../clippin/ClipPin-Setup.msi" class="btn mt-5 flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold rounded-full py-3">
+                    <iconify-icon icon="solar:download-minimalistic-bold" style="font-size:18px;"></iconify-icon>
+                    <span data-ko="다운로드" data-en="Download">다운로드</span>
+                </a>
+                <div class="text-center text-xs text-zinc-500 mt-3">v1.0.4 · 50MB</div>
+                <a href="../clippin/" class="text-center text-sm font-semibold text-blue-400 hover:text-blue-300 mt-3"><span data-ko="자세히 보기 →" data-en="Learn more →">자세히 보기 →</span></a>
             </div>
-
-            <div class="reveal">
-                <h2 class="text-3xl md:text-4xl font-bold">ClipPin</h2>
-                <p class="text-zinc-400 leading-8 mt-4 keep-all">복사한 텍스트와 이미지를 모두 기록하고, 자주 쓰는 항목은 고정해 숫자 키 한 번으로 붙여넣는 Windows 클립보드 관리자.</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="../clippin/ClipPin-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
-                    <a href="../clippin/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
+        </article>
+        <article class="reveal card rounded-3xl border border-white/10 overflow-hidden bg-white/[.03] flex flex-col">
+            <a href="../noeulplayer/" class="block aspect-[16/10] overflow-hidden bg-black">
+                <img src="img/noeulplayer.jpg" alt="NoeulPlayer" loading="lazy" class="w-full h-full object-cover object-top">
+            </a>
+            <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3">
+                    <img src="img/icon-noeulplayer.png" alt="" width="44" height="44" class="w-11 h-11 rounded-xl">
+                    <div>
+                        <h2 class="text-xl font-bold leading-tight">NoeulPlayer</h2>
+                        <span class="inline-block mt-1 text-[11px] font-semibold text-blue-300 bg-blue-500/10 rounded-full px-2.5 py-0.5" data-ko="미디어" data-en="Media">미디어</span>
+                    </div>
                 </div>
+                <p class="text-zinc-400 text-sm leading-7 mt-4 keep-all flex-1" data-ko="코덱 설치 없이 바로 재생되는 가볍고 깔끔한 동영상 플레이어" data-en="A light, clean video player that plays most formats right away">코덱 설치 없이 바로 재생되는 가볍고 깔끔한 동영상 플레이어</p>
+                <a href="../noeulplayer/NoeulPlayer-1.1.0-x64.msi" class="btn mt-5 flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold rounded-full py-3">
+                    <iconify-icon icon="solar:download-minimalistic-bold" style="font-size:18px;"></iconify-icon>
+                    <span data-ko="다운로드" data-en="Download">다운로드</span>
+                </a>
+                <div class="text-center text-xs text-zinc-500 mt-3">v1.1.0 · 72MB</div>
+                <a href="../noeulplayer/" class="text-center text-sm font-semibold text-blue-400 hover:text-blue-300 mt-3"><span data-ko="자세히 보기 →" data-en="Learn more →">자세히 보기 →</span></a>
             </div>
-
+        </article>
+        <article class="reveal card rounded-3xl border border-white/10 overflow-hidden bg-white/[.03] flex flex-col">
+            <a href="../worklog/" class="block aspect-[16/10] overflow-hidden bg-black">
+                <img src="img/worklog-1.png" alt="WorkLog" loading="lazy" class="w-full h-full object-cover object-top">
+            </a>
+            <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3">
+                    <img src="img/icon-worklog.png" alt="" width="44" height="44" class="w-11 h-11 rounded-xl">
+                    <div>
+                        <h2 class="text-xl font-bold leading-tight">WorkLog</h2>
+                        <span class="inline-block mt-1 text-[11px] font-semibold text-blue-300 bg-blue-500/10 rounded-full px-2.5 py-0.5" data-ko="업무일지" data-en="Work log">업무일지</span>
+                    </div>
+                </div>
+                <p class="text-zinc-400 text-sm leading-7 mt-4 keep-all flex-1" data-ko="표·그림·할 일·SQL 쿼리를 한곳에 기록하는 업무일지 프로그램" data-en="A work journal with tables, images, to-dos and SQL queries in one place">표·그림·할 일·SQL 쿼리를 한곳에 기록하는 업무일지 프로그램</p>
+                <a href="../worklog/WorkLog-Setup.msi" class="btn mt-5 flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold rounded-full py-3">
+                    <iconify-icon icon="solar:download-minimalistic-bold" style="font-size:18px;"></iconify-icon>
+                    <span data-ko="다운로드" data-en="Download">다운로드</span>
+                </a>
+                <div class="text-center text-xs text-zinc-500 mt-3">v1.1.0 · 53MB</div>
+                <a href="../worklog/" class="text-center text-sm font-semibold text-blue-400 hover:text-blue-300 mt-3"><span data-ko="자세히 보기 →" data-en="Learn more →">자세히 보기 →</span></a>
+            </div>
+        </article>
+        <article class="reveal card rounded-3xl border border-white/10 overflow-hidden bg-white/[.03] flex flex-col">
+            <a href="../ziprush/" class="block aspect-[16/10] overflow-hidden bg-black">
+                <img src="img/ziprush.png" alt="ZipRush" loading="lazy" class="w-full h-full object-cover object-top">
+            </a>
+            <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center gap-3">
+                    <img src="img/icon-ziprush.png" alt="" width="44" height="44" class="w-11 h-11 rounded-xl">
+                    <div>
+                        <h2 class="text-xl font-bold leading-tight">ZipRush</h2>
+                        <span class="inline-block mt-1 text-[11px] font-semibold text-blue-300 bg-blue-500/10 rounded-full px-2.5 py-0.5" data-ko="압축" data-en="Compression">압축</span>
+                    </div>
+                </div>
+                <p class="text-zinc-400 text-sm leading-7 mt-4 keep-all flex-1" data-ko="모든 CPU 코어로 빠르게 압축하고 푸는 압축 프로그램" data-en="A fast ZIP tool that uses all your CPU cores, right from the Explorer menu">모든 CPU 코어로 빠르게 압축하고 푸는 압축 프로그램</p>
+                <a href="../ziprush/ZipRush-Setup.msi" class="btn mt-5 flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold rounded-full py-3">
+                    <iconify-icon icon="solar:download-minimalistic-bold" style="font-size:18px;"></iconify-icon>
+                    <span data-ko="다운로드" data-en="Download">다운로드</span>
+                </a>
+                <div class="text-center text-xs text-zinc-500 mt-3">v1.2.0 · 54MB</div>
+                <a href="../ziprush/" class="text-center text-sm font-semibold text-blue-400 hover:text-blue-300 mt-3"><span data-ko="자세히 보기 →" data-en="Learn more →">자세히 보기 →</span></a>
+            </div>
+        </article>
         </div>
-    </div>
-</section>
-
-<section id="noeulplayer" class="py-16 scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            <div class="reveal">
-                <div class="space-y-5">
-                <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
-                    <img src="img/noeulplayer.jpg" alt="NoeulPlayer 재생 화면" loading="lazy"
-                         class="w-full h-auto rounded-xl block">
-                </div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h2 class="text-3xl md:text-4xl font-bold">NoeulPlayer</h2>
-                <p class="text-zinc-400 leading-8 mt-4 keep-all">코덱을 따로 깔 필요 없이 바로 재생되는, 어두운 화면에 꼭 필요한 버튼만 남긴 가볍고 깔끔한 Windows 동영상 플레이어.</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="../noeulplayer/NoeulPlayer-1.1.0-x64.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드 (일반판)</a>
-                    <a href="../noeulplayer/NoeulPlayer-Lite-1.1.0-x64.msi" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">Lite판</a>
-                    <a href="../noeulplayer/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="worklog" class="py-16 scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            <div class="reveal">
-                <div class="space-y-5">
-                <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
-                    <img src="img/worklog-1.png" alt="WorkLog 일지 화면: 탭, 할 일, 본문 편집기" loading="lazy"
-                         class="w-full h-auto rounded-xl block">
-                </div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h2 class="text-3xl md:text-4xl font-bold">WorkLog</h2>
-                <p class="text-zinc-400 leading-8 mt-4 keep-all">날짜별 업무일지에 표·그림·할 일·SQL 쿼리를 한곳에 기록하고, 결과까지 그 자리에서 확인하는 Windows 업무일지 프로그램.</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="../worklog/WorkLog-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
-                    <a href="../worklog/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="ziprush" class="py-16 scroll-mt-16">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            <div class="reveal">
-                <div class="space-y-5">
-                <div class="rounded-2xl border border-white/10 bg-black/40 p-2 shadow-2xl shadow-black/50   w-full">
-                    <img src="img/ziprush.png" alt="ZipRush 압축 파일 내용 보기 화면" loading="lazy"
-                         class="w-full h-auto rounded-xl block">
-                </div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h2 class="text-3xl md:text-4xl font-bold">ZipRush</h2>
-                <p class="text-zinc-400 leading-8 mt-4 keep-all">모든 CPU 코어를 한꺼번에 써서 빠르게 압축하고 푸는 Windows 압축 프로그램. 탐색기 우클릭만으로 끝납니다.</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="../ziprush/ZipRush-Setup.msi" class="px-6 py-3 rounded-full text-sm font-semibold bg-blue-600 text-white btn">다운로드</a>
-                    <a href="../ziprush/" class="px-6 py-3 rounded-full text-sm font-semibold glass text-zinc-200 btn">자세히 보기 →</a>
-                </div>
-            </div>
-
-        </div>
+        <p id="en-note" class="hidden text-center text-xs text-zinc-600 mt-8" data-ko="※ 각 프로그램 소개 페이지는 한국어로 제공됩니다." data-en="Note: each program&#x27;s detail page is in Korean.">※ 각 프로그램 소개 페이지는 한국어로 제공됩니다.</p>
     </div>
 </section>
 
 </main>
 
-
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
+<!-- FOOTER -->
 <footer class="border-t border-white/[.06] py-10">
-
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row gap-6 items-center justify-between">
-
-        <a href="../" class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
-                <iconify-icon icon="solar:programming-bold" style="font-size:18px;"></iconify-icon>
-            </div>
-            <div>
-                <div class="font-semibold">케이소프트</div>
-                <div class="text-xs text-zinc-600">KEISOFT AI Software Development</div>
-            </div>
-        </a>
-
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row gap-6 items-center justify-between">
         <div class="text-sm text-zinc-600">© 2026 KEISOFT. All rights reserved.</div>
-
-        <a href="../" class="text-sm text-zinc-500 hover:text-white transition">← 메인으로 돌아가기</a>
-
+        <a href="../" class="text-sm text-zinc-500 hover:text-white transition"><span data-ko="← 메인으로 돌아가기" data-en="← Back to home">← 메인으로 돌아가기</span></a>
     </div>
-
 </footer>
 
-
 <script>
+    /* 언어: 저장된 선택 > 브라우저 언어(ko면 한국어, 그 외 영어). 전환 버튼으로 수동 변경 */
+    var TITLE = { ko: "개발 SW | 케이소프트", en: "Software | KEISOFT" };
+    var DESC  = { ko: "케이소프트가 직접 개발한 Windows 프로그램: ClipPin, NoeulPlayer, WorkLog, ZipRush.", en: "Windows programs built by KEISOFT: ClipPin, NoeulPlayer, WorkLog and ZipRush." };
 
-    /* 모바일 메뉴 */
-    function toggleMenu() {
-        document.getElementById('mobile-menu').classList.toggle('open');
+    function pickLang() {
+        try { var s = localStorage.getItem('lang'); if (s === 'ko' || s === 'en') return s; } catch (_) {}
+        var l = (navigator.languages && navigator.languages[0]) || navigator.language || 'ko';
+        return l.toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
     }
 
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-ko]').forEach(function (el) { el.textContent = el.getAttribute('data-' + lang); });
+        document.title = TITLE[lang];
+        document.querySelector('meta[name="description"]').setAttribute('content', DESC[lang]);
+        document.getElementById('lang-btn').textContent = lang === 'ko' ? 'EN' : '한국어';
+        /* 영어일 때만 "상세 페이지는 한국어" 안내 표시 */
+        document.getElementById('en-note').classList.toggle('hidden', lang === 'ko');
+    }
+
+    var lang = pickLang();
+    applyLang(lang);
+
+    document.getElementById('lang-btn').addEventListener('click', function () {
+        lang = lang === 'ko' ? 'en' : 'ko';
+        try { localStorage.setItem('lang', lang); } catch (_) {}
+        applyLang(lang);
+    });
+
     /* 스크롤 등장 애니메이션 */
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
         });
     }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
+    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
 </script>
 
 </body>
