@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhotoView — 빠른 이미지 관리자·뷰어·편집기</title>
+<style>
+  /* #region 테마: 앱과 같은 남색 + 주황 + 라벤더 (시스템이 다크면 검정 계열) */
+  :root {
+    --navy: #1a1f40; --accent: #f26a21; --accent2: #ff7e3a;
+    --bg: #f4f5fb; --card: #ffffff; --line: #e3e6f0; --ink: #14183b; --muted: #6b7090; --chip: #e6eafb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --navy: #0a0a0a; --bg: #101010; --card: #1a1a1a; --line: #2e2e2e; --ink: #e6e6e6; --muted: #9a9a9a; --chip: #303030; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink); line-height: 1.7;
+    font-family: "Segoe UI Variable", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  h2 { font-size: 1.5rem; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 28px; }
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  a { color: var(--accent); }
+  /* #endregion */
+
+  /* #region 히어로 */
+  .hero { background: var(--navy); color: #fff; padding: 72px 0 64px; text-align: center; }
+  .hero svg { width: 96px; height: 96px; filter: drop-shadow(0 8px 20px rgba(242, 106, 33, .45)); }
+  .hero h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 18px 0 8px; }
+  .hero p { color: #b9bedc; font-size: 1.1rem; margin: 0 auto; max-width: 600px; }
+  .btn {
+    display: inline-block; margin-top: 28px; padding: 14px 30px; border-radius: 12px; color: #fff; font-weight: 600; font-size: 1.05rem;
+    text-decoration: none; background: linear-gradient(90deg, var(--accent), var(--accent2)); box-shadow: 0 8px 24px rgba(242, 106, 33, .35);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(242, 106, 33, .5); }
+  .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .meta { display: block; margin-top: 10px; font-size: .85rem; color: #9096b8; }
+  /* #endregion */
+
+  /* #region 카드 / 표 / 키 */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .tag { display: inline-block; background: var(--chip); color: var(--accent); font-weight: 700; font-size: .8rem; border-radius: 999px; padding: 1px 10px; margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .85rem; }
+  tr:last-child td { border-bottom: 0; }
+  kbd { background: var(--chip); border-radius: 6px; padding: 2px 8px; font-family: inherit; font-size: .9em; white-space: nowrap; }
+  ol.steps { padding-left: 1.2em; } ol.steps li { margin-bottom: 8px; }
+  .note { background: var(--card); border-left: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; color: var(--muted); }
+  footer { text-align: center; color: var(--muted); padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: .9rem; }
+  /* #endregion */
+  /* #region 스크린샷 */
+  figure { margin: 0 0 28px; }
+  figure img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 12px 40px rgba(0, 0, 0, .25); }
+  figcaption { color: var(--muted); font-size: .92rem; margin-top: 10px; text-align: center; }
+  /* #endregion */
+</style>
+</head>
+<body>
+
+<!-- #region 소개 -->
+<header class="hero">
+  <div class="wrap">
+    <!-- 앱 아이콘과 같은 도안 (벡터) -->
+    <svg viewBox="0 0 48 48" role="img" aria-label="PhotoView 아이콘">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ff8a4c"/><stop offset="1" stop-color="#f26a21"/></linearGradient></defs>
+      <rect width="48" height="48" rx="11" fill="url(#g)"/>
+      <rect x="11" y="11" width="26" height="26" rx="6" fill="none" stroke="#fff" stroke-width="2.6"/>
+      <circle cx="30" cy="19" r="2.6" fill="none" stroke="#fff" stroke-width="2.2"/>
+      <path d="M13 34l8-9 5 5 4-4 6 7" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h1>PhotoView</h1>
+    <p>폴더를 훑어보고, 크게 열어 보고, 바로 고치는 — 빠르고 가벼운 Windows 이미지 도구입니다.</p>
+    <a class="btn" href="PhotoView.msi" download>⬇ 설치 파일 다운로드</a>
+    <span class="meta">PhotoView.msi · 약 60 MB · Windows 10/11 (64비트)</span>
+  </div>
+</header>
+<!-- #endregion -->
+
+<div class="wrap">
+
+  <!-- #region 화면 미리보기 -->
+  <section style="border-top:0">
+    <h2>화면 미리보기</h2>
+    <p class="lead">검정 계열 다크 모드 화면입니다. 라이트 모드로도 쓸 수 있습니다.</p>
+    <figure>
+      <img src="screenshot-manage.webp" alt="PhotoView 관리 모드: 폴더 트리, 썸네일 격자, 미리보기와 별점" loading="lazy">
+      <figcaption>관리 모드 — 폴더 트리 · 썸네일 격자 · 미리보기와 촬영 정보</figcaption>
+    </figure>
+    <figure>
+      <img src="screenshot-view.webp" alt="PhotoView 보기 모드: 사진을 크게 보여 주고 아래에 필름스트립" loading="lazy">
+      <figcaption>보기 모드 — 사진을 크게, 아래에는 필름스트립</figcaption>
+    </figure>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 세 가지 모드 -->
+  <section>
+    <h2>세 가지 모드로 한 화면에서</h2>
+    <p class="lead">사이드바에서 모드를 바꾸거나 <kbd>M</kbd> <kbd>V</kbd> <kbd>E</kbd> 키로 전환합니다. 사진을 더블클릭하면 보기, <kbd>Esc</kbd> 를 누르면 관리로 돌아옵니다.</p>
+    <div class="grid">
+      <div class="card"><span class="tag">M · 관리</span><h3>폴더와 썸네일</h3>
+        <p>왼쪽 폴더 트리, 가운데 썸네일 격자, 오른쪽 미리보기. 수천 장이 있는 폴더도 보이는 줄만 만들어서 가볍게 넘어갑니다. 정렬·별점 필터·썸네일 크기 조절을 지원합니다.</p></div>
+      <div class="card"><span class="tag">V · 보기</span><h3>크게, 빠르게</h3>
+        <p>휠로 커서 기준 확대, 드래그로 이동, 더블클릭으로 맞춤↔100%. 앞뒤 사진은 미리 읽어 두어 넘길 때 거의 즉시 나옵니다. 전체화면과 슬라이드쇼도 됩니다.</p></div>
+      <div class="card"><span class="tag">E · 편집</span><h3>그리고, 가리고, 자르기</h3>
+        <p>선·사각형·펜·화살표·글자·모자이크·블러, 자르기, 크기 조절, 회전·반전, 밝기·대비·흑백. 되돌리기는 언제든 <kbd>Ctrl</kbd>+<kbd>Z</kbd>.</p></div>
+    </div>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 기능 -->
+  <section>
+    <h2>주요 기능</h2>
+    <p class="lead">군더더기 없이, 자주 쓰는 것 위주로 담았습니다.</p>
+    <div class="grid">
+      <div class="card"><h3>더블클릭으로 바로 열기</h3><p>탐색기에서 사진을 더블클릭하면 이 프로그램으로 열립니다. 이미 켜져 있으면 새 창을 띄우지 않고 그 창에서 엽니다.</p></div>
+      <div class="card"><h3>별점 관리</h3><p>1~5점을 주고(<kbd>1</kbd>~<kbd>5</kbd>) 별점 이상만 걸러 볼 수 있습니다. 여러 장을 선택해 한 번에 줄 수도 있습니다.</p></div>
+      <div class="card"><h3>촬영 정보</h3><p>크기·용량·촬영일·카메라·조리개·셔터·ISO·초점거리를 보여 줍니다. 휴대폰 사진의 회전도 자동으로 맞춥니다.</p></div>
+      <div class="card"><h3>개체 방식 편집</h3><p>그린 도형은 사진 위의 개체라서 선택해서 옮기거나 지울 수 있습니다. 회전·저장 등을 하면 사진에 합쳐집니다.</p></div>
+      <div class="card"><h3>저장·복사·그림판</h3><p>덮어쓰기 확인, 다른 이름으로 저장(PNG·JPG·BMP·TIFF), 클립보드 복사, 그림판에서 열기. 삭제는 휴지통으로 갑니다.</p></div>
+      <div class="card"><h3>다크 모드</h3><p>눈이 편한 검정 계열 다크 모드를 지원하고, 선택은 기억합니다.</p></div>
+    </div>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 단축키 -->
+  <section>
+    <h2>단축키</h2>
+    <table>
+      <tr><th>키</th><th>동작</th></tr>
+      <tr><td><kbd>M</kbd> / <kbd>V</kbd> / <kbd>E</kbd></td><td>관리 / 보기 / 편집 모드</td></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>이전·다음 사진 (관리 모드에서는 격자 이동, <kbd>↑</kbd> <kbd>↓</kbd> 는 줄 이동)</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>관리: 선택한 사진 열기 / 보기: 전체화면 / 자르기 중: 적용</td></tr>
+      <tr><td><kbd>F</kbd> · <kbd>1</kbd> · <kbd>+</kbd> <kbd>−</kbd></td><td>화면 맞춤 · 100% · 확대/축소</td></tr>
+      <tr><td><kbd>R</kbd> / <kbd>Shift</kbd>+<kbd>R</kbd></td><td>오른쪽 / 왼쪽 회전</td></tr>
+      <tr><td><kbd>F5</kbd></td><td>슬라이드쇼 (관리 모드에서는 새로고침)</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>O</kbd> · <kbd>S</kbd> · <kbd>Shift</kbd>+<kbd>S</kbd></td><td>열기 · 저장 · 다른 이름으로 저장</td></tr>
+      <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> · <kbd>C</kbd></td><td>되돌리기 · 복사 (그린 도형 포함)</td></tr>
+      <tr><td><kbd>Delete</kbd></td><td>사진을 휴지통으로 (개체를 선택했다면 그 개체 삭제)</td></tr>
+      <tr><td><kbd>1</kbd>~<kbd>5</kbd> / <kbd>Ctrl</kbd>+<kbd>1</kbd>~<kbd>5</kbd></td><td>별점 (관리 모드 / 보기·편집 모드)</td></tr>
+      <tr><td><kbd>Shift</kbd> + 선 드래그</td><td>가로/세로 직선으로 고정</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>선택·도구·자르기 해제 → 마지막엔 관리 모드로</td></tr>
+    </table>
+  </section>
+  <!-- #endregion -->
+
+  <!-- #region 설치 -->
+  <section>
+    <h2>설치</h2>
+    <p class="lead"><a href="PhotoView.msi" download>PhotoView.msi</a> 를 내려받아 실행하면 됩니다.</p>
+    <ol class="steps">
+      <li>설치 파일을 실행하면 바로 설치되고 앱이 시작됩니다. 시작 메뉴에 바로가기가 생깁니다.</li>
+      <li>사진을 <b>더블클릭으로 열고</b> 싶다면, 사진을 우클릭 → <b>연결 프로그램 → 다른 앱 선택</b>에서 PhotoView를 고르고 <b>항상 사용</b>을 눌러 주세요. (앱 사이드바의 <b>연결</b> 버튼으로 설정 화면을 열 수도 있습니다.)</li>
+      <li>제거는 설정 &gt; 앱에서 할 수 있습니다. 별점과 설정은 제거해도 남습니다.</li>
+    </ol>
+    <div class="grid" style="margin-top:18px">
+      <div class="card"><h3>관리자 권한 불필요</h3><p>현재 사용자 전용으로 설치됩니다.</p></div>
+      <div class="card"><h3>.NET 포함</h3><p>런타임이 함께 들어 있어 별도로 설치할 것이 없습니다.</p></div>
+      <div class="card"><h3>업그레이드는 덮어 설치</h3><p>새 설치 파일을 실행하면 기존 버전이 자동으로 교체됩니다.</p></div>
+    </div>
+    <p class="note" style="margin-top:18px">서명되지 않은 설치 파일이라 처음 실행할 때 Windows SmartScreen 경고가 나올 수 있습니다. WebP·HEIC 같은 형식은 윈도우에 해당 코덱(Microsoft Store의 이미지 확장)이 있어야 열립니다.</p>
+  </section>
+  <!-- #endregion -->
+
+</div>
+
+<footer>PhotoView · Windows 10/11 · WPF (.NET 10)</footer>
+</body>
+</html>
